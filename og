@@ -1,0 +1,95 @@
+[bdrew@localhost src]$ export PATH=$PATH:/usr/mpich-3.4/bin
+[bdrew@localhost src]$ export PATH=$PATH:/lib64/openmpi/bin
+[bdrew@localhost src]$ cd ..
+[bdrew@localhost mapreduce-7Apr14]$ cd examples
+[bdrew@localhost examples]$ mpirun -np 4 wordfreq *.cpp
+Map time (secs) = 0.0320894
+Map KV =   KV pairs:   803.25 ave 1455 max 0 min
+  Histogram:  1 0 0 1 0 0 0 0 1 1
+  Kdata (Mb): 0.00576186 ave 0.0102625 max 0 min
+  Histogram:  1 0 0 0 1 0 0 0 1 1
+  Vdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+Collate time (secs) = 0.00487692
+Collate KMV =   KMV pairs:  166 ave 173 max 150 min
+  Histogram:  1 0 0 0 0 0 0 1 0 2
+  Kdata (Mb): 0.00155663 ave 0.00160408 max 0.00148773 min
+  Histogram:  1 0 0 0 0 0 1 1 0 1
+  Vdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+Collate Comm = 0.0391 Mb send, 0.0391 Mb recv
+  Send (Mb):  0.00976849 ave 0.0175858 max 0 min
+  Histogram:  1 0 0 0 1 0 0 0 1 1
+  Recv (Mb):  0.00976849 ave 0.0147018 max 0.00695038 min
+  Histogram:  1 0 2 0 0 0 0 0 0 1
+Reduce time (secs) = 2.5829e-05
+Reduce KV =   KV pairs:   166 ave 173 max 150 min
+  Histogram:  1 0 0 0 0 0 0 1 0 2
+  Kdata (Mb): 0.00155663 ave 0.00160408 max 0.00148773 min
+  Histogram:  1 0 0 0 0 0 1 1 0 1
+  Vdata (Mb): 0.00063324 ave 0.000659943 max 0.000572205 min
+  Histogram:  1 0 0 0 0 0 0 1 0 2
+Sort_values time (secs) = 2.746e-05
+Sort_values KV =   KV pairs:   166 ave 173 max 150 min
+  Histogram:  1 0 0 0 0 0 0 1 0 2
+  Kdata (Mb): 0.00155663 ave 0.00160408 max 0.00148773 min
+  Histogram:  1 0 0 0 0 0 1 1 0 1
+  Vdata (Mb): 0.00063324 ave 0.000659943 max 0.000572205 min
+  Histogram:  1 0 0 0 0 0 0 1 0 2
+Map time (secs) = 7.09e-06
+Map KV =   KV pairs:   10 ave 10 max 10 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+  Kdata (Mb): 7.43866e-05 ave 0.000185013 max 3.33786e-05 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Vdata (Mb): 3.8147e-05 ave 3.8147e-05 max 3.8147e-05 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+Gather time (secs) = 2.6249e-05
+Gather KV =   KV pairs:   10 ave 40 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Kdata (Mb): 7.43866e-05 ave 0.000297546 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Vdata (Mb): 3.8147e-05 ave 0.000152588 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+Gather Comm = 0.000496 Mb send, 0.000496 Mb recv
+  Send (Mb):  0.000123978 ave 0.000171661 max 0 min
+  Histogram:  1 0 0 0 0 0 0 0 0 3
+  Recv (Mb):  0.000123978 ave 0.000495911 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+Sort_values time (secs) = 1.077e-05
+Sort_values KV =   KV pairs:   10 ave 40 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Kdata (Mb): 7.43866e-05 ave 0.000297546 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Vdata (Mb): 3.8147e-05 ave 0.000152588 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+198 =
+106 int
+72 void
+67 {
+64 }
+64 *,
+58 if
+54 //
+52 char
+37 KeyValue
+Map time (secs) = 9.97e-06
+Map KV =   KV pairs:   0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+  Kdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+  Vdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+MR stats = 7 max pages any proc, 448 Mb, 0 Mb max file size all procs
+  Pages:      7 ave 7 max 7 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+MapReduce-MPI (7 Apr 2014)
+Cummulative hi-water mem = 448 Mb any proc, 1.75 Gb all procs
+Cummulative comm = 0.0396 Mb send, 0.0396 Mb recv, 0.000122 secs
+  Send (Mb):  0.00989246 ave 0.0177498 max 0 min
+  Histogram:  1 0 0 0 1 0 0 0 1 1
+  Recv (Mb):  0.00989246 ave 0.0151978 max 0.00695038 min
+  Histogram:  1 0 2 0 0 0 0 0 0 1
+3213 total words, 664 unique words
+Time to process 3 files on 4 procs = 0.154437 (secs)
+[bdrew@localhost examples]$ 
+
