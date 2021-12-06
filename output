@@ -1,0 +1,109 @@
+[bdrew@localhost src]$ export PATH=$PATH:/usr/mpich-3.4/bin
+[bdrew@localhost src]$ export PATH=$PATH:/lib64/openmpi/bin
+[bdrew@localhost src]$ make mpicc
+make[1]: Entering directory '/home/bdrew/Downloads/mapreduce/mapreduce-7Apr14/src/Obj_mpicc'
+ar -rc ../libmrmpi_mpicc.a keymultivalue.o keyvalue.o mapreduce.o error.o cmapreduce.o spool.o irregular.o memory.o hash.o
+make[1]: Leaving directory '/home/bdrew/Downloads/mapreduce/mapreduce-7Apr14/src/Obj_mpicc'
+[bdrew@localhost src]$ cd ..
+[bdrew@localhost mapreduce-7Apr14]$ cd examples
+[bdrew@localhost examples]$ make -f Makefile.mpicc
+mpic++ -m64 -g -O -I../src  -c wordfreq.cpp
+wordfreq.cpp: In function ‘void fileread(int, char*, MAPREDUCE_NS::KeyValue*, void*)’:
+wordfreq.cpp:122:22: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   char *whitespace = " \t\n\f\r\0";
+                      ^~~~~~~~~~~~~
+mpic++ -g -O wordfreq.o ../src/libmrmpi_mpicc.a  -o wordfreq
+mpic++ -g -O cwordfreq.o ../src/libmrmpi_mpicc.a  -o cwordfreq
+mpic++ -g -O rmat.o ../src/libmrmpi_mpicc.a  -o rmat
+mpic++ -g -O crmat.o ../src/libmrmpi_mpicc.a  -o crmat
+[bdrew@localhost examples]$ mpirun -np 4 wordfreq *.cpp
+Map time (secs) = 0.000587067
+Map KV =   KV pairs:   828.5 ave 1455 max 0 min
+  Histogram:  1 0 0 0 1 0 0 0 1 1
+  Kdata (Mb): 0.00471401 ave 0.00818062 max 0 min
+  Histogram:  1 0 0 0 1 0 0 0 1 1
+  Vdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+Collate time (secs) = 0.0186903
+Collate KMV =   KMV pairs:  166.75 ave 194 max 140 min
+  Histogram:  1 0 0 1 0 0 1 0 0 1
+  Kdata (Mb): 0.00120974 ave 0.00132275 max 0.000967979 min
+  Histogram:  1 0 0 0 0 0 0 0 1 2
+  Vdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+Collate Comm = 0.0362 Mb send, 0.0362 Mb recv
+  Send (Mb):  0.00904751 ave 0.0165443 max 0 min
+  Histogram:  1 0 0 0 1 0 0 1 0 1
+  Recv (Mb):  0.00904751 ave 0.0112114 max 0.00592041 min
+  Histogram:  1 0 0 0 0 0 1 1 0 1
+Reduce time (secs) = 3.662e-05
+Reduce KV =   KV pairs:   166.75 ave 194 max 140 min
+  Histogram:  1 0 0 1 0 0 1 0 0 1
+  Kdata (Mb): 0.00120974 ave 0.00132275 max 0.000967979 min
+  Histogram:  1 0 0 0 0 0 0 0 1 2
+  Vdata (Mb): 0.000636101 ave 0.000740051 max 0.000534058 min
+  Histogram:  1 0 0 1 0 0 1 0 0 1
+Sort_values time (secs) = 3.505e-05
+Sort_values KV =   KV pairs:   166.75 ave 194 max 140 min
+  Histogram:  1 0 0 1 0 0 1 0 0 1
+  Kdata (Mb): 0.00120974 ave 0.00132275 max 0.000967979 min
+  Histogram:  1 0 0 0 0 0 0 0 1 2
+  Vdata (Mb): 0.000636101 ave 0.000740051 max 0.000534058 min
+  Histogram:  1 0 0 1 0 0 1 0 0 1
+Map time (secs) = 8.11e-06
+Map KV =   KV pairs:   10 ave 10 max 10 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+  Kdata (Mb): 8.2016e-05 ave 9.63211e-05 max 7.53403e-05 min
+  Histogram:  2 0 1 0 0 0 0 0 0 1
+  Vdata (Mb): 3.8147e-05 ave 3.8147e-05 max 3.8147e-05 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+Gather time (secs) = 2.7549e-05
+Gather KV =   KV pairs:   10 ave 40 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Kdata (Mb): 8.2016e-05 ave 0.000328064 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Vdata (Mb): 3.8147e-05 ave 0.000152588 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+Gather Comm = 0.000629 Mb send, 0.000629 Mb recv
+  Send (Mb):  0.000157356 ave 0.000228882 max 0 min
+  Histogram:  1 0 0 0 0 0 0 0 2 1
+  Recv (Mb):  0.000157356 ave 0.000629425 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+Sort_values time (secs) = 9.01e-06
+Sort_values KV =   KV pairs:   10 ave 40 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Kdata (Mb): 8.2016e-05 ave 0.000328064 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+  Vdata (Mb): 3.8147e-05 ave 0.000152588 max 0 min
+  Histogram:  3 0 0 0 0 0 0 0 0 1
+1 thn
+1 ss
+1 mng
+1 nvls;
+1 mcr_mr
+1 2^nlvls*vrg
+1 mrnw->mp(nprcs,&gnrt,&rmt);
+1 mr->cnvrt();
+1 rl
+1 "%ld
+Map time (secs) = 1.069e-05
+Map KV =   KV pairs:   0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+  Kdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+  Vdata (Mb): 0 ave 0 max 0 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+MR stats = 7 max pages any proc, 448 Mb, 0 Mb max file size all procs
+  Pages:      7 ave 7 max 7 min
+  Histogram:  4 0 0 0 0 0 0 0 0 0
+MapReduce-MPI (7 Apr 2014)
+Cummulative hi-water mem = 448 Mb any proc, 1.75 Gb all procs
+Cummulative comm = 0.0368 Mb send, 0.0368 Mb recv, 0.00014 secs
+  Send (Mb):  0.00920486 ave 0.0167732 max 0 min
+  Histogram:  1 0 0 0 1 0 0 1 0 1
+  Recv (Mb):  0.00920486 ave 0.0118408 max 0.00592041 min
+  Histogram:  1 0 0 0 0 1 1 0 0 1
+3314 total words, 667 unique words
+Time to process 3 files on 4 procs = 0.0196169 (secs)
+[bdrew@localhost examples]$ 
+
